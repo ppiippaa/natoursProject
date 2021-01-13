@@ -1,0 +1,58 @@
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+
+  80% {
+    transform: translateX(1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight  {
+
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+
+  80% {
+    transform: translateX(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInBottom  {
+
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+/* keyframes are rules to describe animation sequences
+the name after keyframes is your own content
+the in the curly braces, the instructions
+0% = start of animation, 100% = end of animation, can be any percentage
+best just to use opacity and transform properties
+translateX as we want to animate the X, or rather horizontal, direction
+negative value used for left, positive value used for right
+to apply animation: within the specific css rule, add animation-name: name; and animation-duration: Xs;
+animation-iteration-count = how many times animation repeats
+can apply keyframes to pseudo elements too, e.g on logo:hover
+can use same keyframe for multiple cases and elements*/

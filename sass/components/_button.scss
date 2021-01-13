@@ -1,0 +1,123 @@
+.btn {
+  &,
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 10rem;
+    transition: all .2s;
+    position: relative;
+    font-size: $default-font-size;
+
+    // Changes for the <button> element
+    border: none;
+    cursor: pointer;
+
+  }
+  /* inline-block treated like text, so to centre, use text-align in parent element
+  transition: all .2s; sets all translations related to btn (i.e pseudo classes) to be set to .2s. MUSTE BE SET IN INITAL STATE OF ELEMENT*/
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: $box-shadow;
+
+
+  }
+  /* to move up in translate, you use a negative value
+  box shadow --> X (horizontal) shadow, Y (vertical shadow), blur, color
+  same rules apply with negatives: neg X = left shadow, pos x = right shadow. neg Y = up shadow. pos Y = down shadow*/
+
+  &:focus,
+  &:active {
+    outline: none;
+    transform: translateY(-1px);
+    box-shadow: $box-shadow;
+  }
+  /* active pseudo class is when button is being clicked
+  all pseudo classes relative to initial link state
+  smaller values for box shadow will make element look closer to page*/
+
+
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+
+    &::after {
+      background-color: $color-white;
+    }
+  }
+  /* pseudo class link, will target only btns which are links (a tag), and btns which have been visited as we don't want btn to change after click*/
+
+  &--green {
+    background-color: $color-primary;
+    color: $color-white;
+
+    &::after {
+      background-color: $color-primary;
+    }
+  }
+
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+    border-radius: 100px;
+  }
+  /* the ::after pseudo class creates a temporary pseudo element, which acts as a child of it's inital element (btn in this case)
+  IT IS A "FALSE" ELEMENT AND WE USE THE .btn:hover::after TO DO THE FLY IN ANIMATION
+  content must be defined ( content: "";)
+  display is same as the initial elements
+  height and width will be relative to inital element
+  position absolute, top 0, left 0 to place pseudo element behind OG. For this reason, inital state btn must be set to relative*/
+
+
+  &:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+  }
+  /* after hovering on btn, we then want some animation to occur
+  opacity property will fade out animation*/
+
+  &--animated {
+    animation: moveInBottom .5s ease-out .75s;
+    animation-fill-mode: backwards;
+  }
+
+  /* the animation-fill-mode takes the keyframe and sets the first set of animations first, so rather than appear as normal, then execute the animation,
+  the opacity 0 will apply first*/
+}
+
+.btn-text {
+  &:link,
+  &:visited {
+    color: $color-primary;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px solid $color-primary;
+    padding: 3px;
+    font-size: $default-font-size;
+    transition: all .2s;
+  }
+
+  &:hover {
+    background-color: $color-primary;
+    color: $color-white;
+    box-shadow: $box-shadow;
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    box-shadow: $box-shadow;
+    transform: translateY(0);
+  }
+
+
+}

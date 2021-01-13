@@ -1,0 +1,106 @@
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50% );
+}
+// to center align an element
+
+
+
+
+
+//MEDIA QUERY MANAGER
+/*
+
+0-600px:        PHONE
+600-900px:      TABLET PORTRAIT
+900-1200px:     TABLET LANDSCAPE
+1200-1800px:    DESKTOP (normal styles apply)
+1800px + :      LARGE DESKTOP
+
+For this project: max width queries for 600,900,1200
+                   min width queries for 1800+
+*/
+
+// BELOW IS ONE METHOD, BUT NOT BEST PRACTICE AS YOU'D NEED A SEPARATE MIXIN FOR EACH SIZE
+
+//@content directives
+
+// @mixin respond-phone {
+//  @media (max-width: 600px) {@content};
+//}
+// this mixin is applied into sass file, and the @content directive takes the code written in the sass file.
+// this allows for blocks of code
+
+// so, in the sass file:
+// @include respond-phone {
+//    font-size: 50%;
+//  }
+// the actual rules are not written into the mixin!! Instead just the mixin parameters are set here.
+// *********************************
+// ****** BEST PRACTICE HERE *******
+/* *********************************
+
+@if directive
+// basically an if statement for sass
+
+$breakpoint argument choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+*/
+
+
+//@mixin respond($breakpoint) {
+//  @if $breakpoint == phone {
+//    @media (max-width: 600px) {@content};
+//  }
+//}
+
+//to include in sass:
+// @include respond(phone) {
+//   font-size: 50%;
+// }
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media (max-width: 37.5em) {@content}; // 600px
+}
+  @if $breakpoint == tab-port {
+    @media (max-width: 56.25em) {@content};  //900 px
+  }
+  @if $breakpoint == tab-land {
+    @media (max-width: 75em) {@content};  //1200px
+  }
+  @if $breakpoint == big-desktop {
+    @media (min-width: 112.5em) {@content};  //1800px
+  }
+}
+
+// NOT USING PIXELS BECAUSE THIS WOULD NOT WORK IF USER CHANGES BROWSER SETTINGS
+// ems use browser default pixels, so 1em = 16px.
+// this will also then adapt to any changes user has made in their browser settings ~ more accessible
+
+
+
+
+
+
+
+
+
+
+
+
+
+

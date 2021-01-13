@@ -1,0 +1,117 @@
+.form {
+  &__group:not(:last-child) {
+    margin-bottom: 2rem;
+
+  }
+
+  &__input {
+    font-size: 1.5rem;
+    padding: 1.5rem 2rem;
+    border-radius: .2rem;
+    background-color: rgba($color-white, .5);
+    border: none;
+    font-family: inherit;
+    color: inherit;
+    // input elements do not inherit font families and color by default, so this must be added in manually
+    border-bottom: .3rem solid transparent;
+    // transparent border is added to account for the extra 3px which will cause the 2nd input to jump down 3px when 1st is focused
+    width: 90%;
+    display: block;
+    transition: all .3s;
+
+    @include respond(tab-port) {
+      width: 100%;
+    }
+
+    &:focus {
+      outline: none;
+      // the above pseudo class refers to when the input has been clicked on and is given a border as default by browser.
+      // for accessibility reasons, need to give inputs a property to show it has been selected, in this case it will be a shadow
+      box-shadow: $box-shadow;
+      border-bottom: .3rem solid $color-primary;
+    }
+
+    &:focus:invalid {
+      border-bottom: 3px solid $color-secondary-dark;
+    }
+
+    &::-webkit-input-placeholder {
+      // very new property, currently only available in chrome and safari. targets placeholder styles.
+      color: $color-grey-dark-2;
+    }
+    // the :: (rather than :) pseudo elements represent things which are actually on the webpage, as opposed to pseudo classes which are temporary "states" such as hover
+
+  }
+
+
+  &__label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-left: 2rem;
+    margin-top: .7rem;
+    display: block;
+    transition: all .3s;
+  }
+
+  &__input:placeholder-shown + &__label{
+    // when the input placeholder is shown (i.e. nothing is written in input), the form label is hidden
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4rem);
+  }
+// + is adjacent sibling selector, ~ is the general sibling selector
+// in the above case, the input must go first, and the adjacent sibling second
+//
+
+  &__radio-group {
+    width: 49%;
+    display: inline-block;
+
+    @include respond(tab-port) {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__radio-input {
+    display: none;
+  }
+
+  &__radio-label {
+    font-size: $default-font-size;
+    cursor: pointer;
+    position: relative;
+    padding-left: 4.5rem;
+  }
+
+  &__radio-button {
+    height: 3rem;
+    width: 3rem;
+    border: 5px solid $color-primary;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: -.4rem;
+
+
+    &::after {
+      content: "";
+      display: block;
+      height: 1.3rem;
+      width: 1.3rem;
+      border-radius: 50%;
+      background-color: $color-primary;
+      opacity: 0;
+      transition: opacity .2s;
+      @include centered;
+    }
+  }
+
+
+  &__radio-input:checked ~ &__radio-label &__radio-button::after {
+    opacity: 1;
+  }
+
+
+}

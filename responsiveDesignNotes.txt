@@ -1,0 +1,70 @@
+RESPONSIVE DESIGN STRATEGIES:
+
+Desktop first -->
+Desktop size in css, media queries for shrinkage to smaller screens
+The media queries would select MAX-WIDTH
+
+Mobile first -->
+Mobile screen size in css, media queries to enlarge screens
+The media queries would select MIN-WIDTH
+Mobile first forces us to limit content to essentials as there's less room
+
+MAX AND MIN WIDTH MEDIA QUERIES
+
+DESKTOP FIRST:
+max-width: 600px
+is width <= 600px?
+------------------>
+                                max-width: 900px
+                              is width <= 900px?
+----------------------------------------------->
+
+                                                    max-width: 1200px
+                                                    is width <= 1200px
+                                                    ABOVE 1200 is DESKTOP SIZE
+---------------------------------------------------------------->
+
+* 0px ------------ * 600px ------------ * 900px ------------ * 1200px ------------* INFINITY px
+
+                    Is width >= 600px?
+                    mix-width: 600px
+                    MOBILE FIRST:
+                    ------------------------------------------------------------------->
+
+                                           min-with 900px
+                                           is min width >= 900px
+                                           --------------------------------------------->
+
+                                                                    min-width: 1200px
+                                                                    is min width >= 1200px
+                                                                    ---------------------->
+
+
+
+Which media query applies if vs is 500px? 500 is below both 600 and 600, so both apply.
+However, if the queries are conflicting - LAST ONE TO APPEAR IN CODE will be applied
+
+
+Selecting breakpoints:
+
+BEST PRACTICE -->
+*********************
+Design breaks - select them relative to your project. I.e. minimising/maximising screen until the design "breaks"
+difficult and time consuming.
+
+OK practice -->
+Choosing breakpoints based on most popular devices of each type, e.g. phone, tablet, laptop etc
+Use stat counter website to find
+
+MEDIA QUERIES - SASS MIXINS
+Use mixins to create media queries which are then easy to change
+
+******************************************
+WHAT MEDIA QUERIES DO YOU NEED TO WRITE? *
+******************************************
+
+Order:
+1) Base + typography
+2) General layout + grid
+3) Specific layout
+4) Components

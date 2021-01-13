@@ -1,0 +1,53 @@
+// RESETTING BASIC SETTINGS
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+/* take away all default margin/padding
+border-box --> includes padding and border in total height/width of element
+setting the box-sizing to inherit and putting border-box value in body means that all elements on page will then inherit border-box
+use *::before and *::after to ensure pseudo elements inherit this behaviour too*/
+
+html {
+  font-size: 62.5%; // sets 1 rem to 10px : 10/16 = 62.5%
+
+  //@include respond(phone) {
+  //  font-size: ;
+  //} can delete this one, as we don't want phone to be smaller than 8px, so the tab-port would apply
+
+  @include respond(tab-land) { // sets 1rem to 9px : 9/16 = 56.25%
+    font-size: 56.25%;
+  }
+
+  @include respond(tab-port) { // sets 1rem to 8px : 8/16 = 50%
+    font-size: 50% ;
+  } // tab-port should come 2nd, as otherwise, it would never apply due to 600 always being <= 900 & <= 600
+  // so, always LARGER BEFORE smaller in code for max-width queries
+
+
+  @include respond(big-desktop) { // sets 1rem to 12px : 12/16 = 75%
+    font-size: 75%;
+  }
+
+
+
+}
+/* root font size set in html selector
+changing font-size to 10px will be easier to calculate rem
+HOWEVER, using px will override user's ability to change font size
+so, best practice is to use percentage. 10 is 62.5% of 16*/
+
+body {
+
+  box-sizing: border-box;
+  padding: 3rem;
+
+  @include respond(tab-port) {
+    padding: 0;
+  }
+
+}
+

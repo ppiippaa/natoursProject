@@ -1,0 +1,110 @@
+.section-about {
+  background-color: $color-grey-light-1;
+  padding: 25rem 0;
+  margin-top: -20vh;
+
+  @include respond(tab-port) {
+    padding: 22rem 0 12rem 0;
+  }
+
+  @include respond(phone) {
+    padding: 24rem 0 10rem 0;
+  }
+}
+
+.section-features {
+  padding: 20rem 0;
+  background-image: linear-gradient(to right bottom,
+          rgba($color-primary-light, 0.8),
+          rgba($color-primary-dark, 0.8)),
+  url(../img/nat-4.jpg);
+  background-size: cover;
+  transform: skewY(-7deg);
+  margin-top: -10rem;
+
+  & > * {
+    transform: skewY(7deg);
+  }
+
+  @include respond(tab-port) {
+    padding: 10rem 0;
+  }
+}
+
+// direct child = element 1 level down
+// all children = all elements within
+
+.section-tours {
+  background-color: $color-grey-light-1;
+  padding: 25rem 0 13rem 0;
+  margin-top: -11rem;
+
+  @include respond(tab-port) {
+    padding: 20rem 0 8rem 0;
+  }
+}
+
+.section-stories {
+  padding: 12rem 0;
+  position: relative;
+
+  @include respond(tab-port) {
+    padding: 7rem 0;
+  }
+
+}
+
+.section-book {
+  padding: 15rem 0;
+  background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+
+  @include respond(tab-land) {
+    padding: 10rem 0;
+  }
+}
+
+.book {
+  background-image: linear-gradient(105deg,
+                                    rgba($color-white, .9) 0%,
+                                    rgba($color-white, .9) 50%,
+                                    transparent 50%) ,
+                                    url(../img/nat-10.jpg);
+  // the above method is an alternative to clip-path. Setting the 2 last colors at 50% creates a hard line.
+  // having the gradient at 105deg gives the rectangular edge
+  background-size: cover;
+  border-radius: $default-border-3;
+  box-shadow: 0 1.8rem 4rem rgba($color-black, .35);
+  //height: 50rem;
+
+  @include respond(tab-land) {
+    background-image: linear-gradient(105deg,
+            rgba($color-white, .9) 0%,
+            rgba($color-white, .9) 65%,
+            transparent 65%) ,
+    url(../img/nat-10.jpg);
+  }
+
+  @include respond(tab-port) {
+    background-image: linear-gradient(to right,
+            rgba($color-white, .9) 0%,
+            rgba($color-white, .9) 100%) ,
+    url(../img/nat-10.jpg);
+  }
+
+  &__form {
+    width: 50%;
+    padding: 6rem;
+
+    @include respond(tab-land) {
+      width: 65%;
+    }
+
+    @include respond(tab-port) {
+      width: 100%;
+    }
+  }
+  // the form element is seperate from the book__form, as the form will be a reusable component
+}
+
+
+

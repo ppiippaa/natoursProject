@@ -1,0 +1,97 @@
+.story {
+  width: 75%;
+  box-shadow: 0 3rem 6rem rgba($color-black, .1);
+  background-color: rgba($color-white, .6);
+  border-radius: $default-border-3;
+  padding: 6rem 6rem 6rem 6rem;
+  margin: 0 auto 6rem;
+  // accounts for below transform:translateX(-3rem) rule
+  font-size: $default-font-size;
+  transform: skewX(-12deg);
+
+
+  //& > * {
+  //  transform: skewX(12deg);
+  //}
+  // this cannot be used to solve the problem as we can't have multiple of the same transform property on a single element.
+  // transform properties are added to the children themselves
+
+  @include respond(tab-port) {
+    width: 85%;
+    padding: 4rem;
+    padding-left: 7rem;
+  }
+
+  @include respond(phone) {
+    transform: skewX(0);
+  }
+
+  @include respond(big-desktop) {
+    padding-bottom: 10rem;
+  }
+
+  &__shape {
+    height: 15rem;
+    width: 15rem;
+    float: left;
+    -webkit-shape-outside: circle(50% at 50% 50%);
+    // 1st value:radius - 50% of height & width, 2nd & 3rd value set radius from centre horizontally and vertically :
+    shape-outside: circle(50% at 50% 50%);
+    // shape-outside property to wrap text. Needs element to be set to float. Also needs dimensions to be specified, i.e. width and height
+    // set this to the element which the text will then wrap round
+    -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
+    // makes a circle shape. use same dimensions as shape-around property to ensure they match
+    transform: translateX(-3rem) skewX(12deg);
+    // rather than add padding/margin, best to use transform: translate with floated elements
+    position: relative;
+
+    @include respond(phone) {
+      transform: skewX(0) translate(-3rem);
+    }
+
+  }
+
+  &__img {
+    // always give images dimensions for responsive design!
+    height: 100%;
+    // image is child of shape, so the 100% will be relative to 15rem.
+    transform: translateX(-3.9rem) scale(1.4);
+    transition: all .5s ease;
+
+
+  }
+
+  &__text {
+    transform: skewX(12deg);
+
+    @include respond(phone) {
+      transform: skew(0);
+    }
+  }
+
+  &__caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    color: $color-white;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    text-align: center;
+    opacity: 0;
+    transition: all .5s;
+    backface-visibility: hidden;
+  }
+
+  &:hover &__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  &:hover &__img {
+    transform: translateX(-4rem) scale(1);
+    filter: blur(3px) brightness(80%);
+  }
+
+}
