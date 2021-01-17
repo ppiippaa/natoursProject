@@ -37,6 +37,10 @@
     width: 33.3333333%;
     display: table-cell;
 
+    @include respond(tab-port) {
+      display: none;
+    }
+
   }
 
   &__right {
@@ -45,11 +49,17 @@
     vertical-align: middle;
     // the above property can be used for table cells to align content to the middle
     padding: 3rem 5rem;
+
+    @include respond(tab-port) {
+        width: 100%;
+    }
+
   }
 
   &__img {
     display: block;
     width: 100%;
+
 
   }
 
@@ -67,9 +77,6 @@
     -moz-column-count: 2;
     -moz-column-gap: 4rem;
     -moz-column-rule: 1px solid $color-grey-light-2;
-
-
-
     // hyphen is new property so requires prefixes
     -moz-hyphens: auto;
     -ms-hyphens: auto;
@@ -78,6 +85,7 @@
     // to apply, document language needs to be set in html head (<html lang="en>)
     // other properties include none or manual, where you specify in markup where hyphens should be
   }
+
 
   // Functionality
   // open states
@@ -111,4 +119,6 @@
     }
 
   }
+
+
 }

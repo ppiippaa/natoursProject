@@ -574,11 +574,17 @@ padding creates a border around all content in the body, like a border*/
   .popup__left {
     width: 33.3333333%;
     display: table-cell; }
+    @media (max-width: 56.25em) {
+      .popup__left {
+        display: none; } }
   .popup__right {
     width: 66.6666666%;
     display: table-cell;
     vertical-align: middle;
     padding: 3rem 5rem; }
+    @media (max-width: 56.25em) {
+      .popup__right {
+        width: 100%; } }
   .popup__img {
     display: block;
     width: 100%; }
@@ -619,7 +625,7 @@ padding creates a border around all content in the body, like a border*/
   box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 0.3rem;
-  padding: 6rem 6rem 6rem 9rem;
+  padding: 6rem 6rem 6rem 6rem;
   margin: 0 auto 6rem;
   font-size: 1.6rem;
   transform: skewX(-12deg); }
